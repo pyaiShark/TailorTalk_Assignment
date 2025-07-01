@@ -44,7 +44,7 @@ git clone https://github.com/pyaiShark/TailorTalk_Assignment.git
 cd tailortalk
 
 # Setup environment
-python -m venv .venv
+python3.9 -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate    # Windows
 

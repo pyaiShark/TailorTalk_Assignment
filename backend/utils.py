@@ -9,12 +9,17 @@ import re
 
 def get_calendar_service():
     """Initialize and return Google Calendar service"""
-    if not service_account_path:
-        raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
     
     try:
+        import json
+        # Get JSON string from environment
+        creds_json = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+        
+        # Parse JSON and use service account info
+        service_account_info = json.loads(creds_json)
+        
         credentials = Credentials.from_service_account_file(
-            json.loads(os.environ['GOOGLE_APPLICATION_CREDENTIALS']),
+            service_account_info,
             scopes=['https://www.googleapis.com/auth/calendar']
         )
         return build('calendar', 'v3', credentials=credentials)

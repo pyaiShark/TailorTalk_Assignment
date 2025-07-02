@@ -1,6 +1,4 @@
 import os
-import json
-import logging
 from datetime import datetime, timezone
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
@@ -10,36 +8,19 @@ import re
 
 
 def get_calendar_service():
+    """Initialize and return Google Calendar service"""
+    service_account_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+    if not service_account_path:
+        raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
+    
     try:
-        # Get JSON string from environment
-        creds_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', '')
-        
-        # Log the value for debugging
-        logging.info(f"Credentials length: {len(creds_json)}")
-        logging.info(f"First 100 characters: {creds_json[:100]}")
-        
-        # Validate JSON is not empty
-        if not creds_json:
-            raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable is empty")
-        
-        # Parse JSON
-        try:
-            service_account_info = json.loads(creds_json)
-        except json.JSONDecodeError as e:
-            logging.error(f"Invalid JSON: {str(e)}")
-            logging.error(f"Problematic content: {creds_json[:200]}")
-            raise
-        
-        # Create credentials
-        credentials = Credentials.from_service_account_info(
-            service_account_info,
+        credentials = Credentials.from_service_account_file(
+            service_account_path,
             scopes=['https://www.googleapis.com/auth/calendar']
         )
-        
         return build('calendar', 'v3', credentials=credentials)
-        
     except Exception as e:
-        logging.exception("Failed to create calendar service")
         raise RuntimeError(f"Failed to create calendar service: {str(e)}")
 
 def get_calendar_id():

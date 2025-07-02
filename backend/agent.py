@@ -2,8 +2,7 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.tools import tool
-import os
-import json
+
 
 
 def create_tools(service, calendar_id):
@@ -30,7 +29,6 @@ def create_tools(service, calendar_id):
 
 def create_booking_agent(tools):
     """Create the booking agent executor"""
-    
     prompt = ChatPromptTemplate.from_messages([
     ("system", (
         "You're an intelligent appointment booking assistant for TailorTalk. "
@@ -59,10 +57,7 @@ def create_booking_agent(tools):
 
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
-        temperature=0.7, 
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
-        convert_system_message_to_human=True,
-        verbose=True
+        temperature=0
     )
     
     agent = create_tool_calling_agent(llm, tools, prompt)

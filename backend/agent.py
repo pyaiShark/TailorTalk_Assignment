@@ -34,7 +34,7 @@ def create_booking_agent(tools):
     # Load credentials from environment
     creds_json = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
     service_account_info = json.loads(creds_json)
-    credentials = Credentials.from_service_account_info(service_account_info)
+    credentials = credentials.from_service_account_info(service_account_info)
     
     prompt = ChatPromptTemplate.from_messages([
     ("system", (

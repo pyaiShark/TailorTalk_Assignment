@@ -69,7 +69,6 @@ def create_booking_agent(tools):
         convert_system_message_to_human=True,
         verbose=True
     )
-    )
     
     agent = create_tool_calling_agent(llm, tools, prompt)
     

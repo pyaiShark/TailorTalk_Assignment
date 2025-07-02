@@ -17,7 +17,7 @@ def get_calendar_service():
         
         # Parse JSON and use service account info
         service_account_info = json.loads(creds_json)
-        
+        print(f"Environment value type: {type(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])}")
         credentials = Credentials.from_service_account_file(
             service_account_info,
             scopes=['https://www.googleapis.com/auth/calendar']

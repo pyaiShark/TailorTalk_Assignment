@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import datetime, timezone
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
@@ -9,7 +10,7 @@ import re
 
 def get_calendar_service():
     """Initialize and return Google Calendar service"""
-    service_account_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    service_account_path = json.loads(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
     if not service_account_path:
         raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
     

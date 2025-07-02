@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Backend URL configuration
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/chat")
+BACKEND_URL = os.getenv("BACKEND_URL", "https://tailortalkprivate-production.up.railway.app/chat")
 
 # App setup
 st.set_page_config(page_title="TailorTalk", page_icon="📅")

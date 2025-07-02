@@ -31,11 +31,6 @@ def create_tools(service, calendar_id):
 def create_booking_agent(tools):
     """Create the booking agent executor"""
     
-    # Load credentials from environment
-    creds_json = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
-    service_account_info = json.loads(creds_json)
-    credentials = credentials.from_service_account_info(service_account_info)
-    
     prompt = ChatPromptTemplate.from_messages([
     ("system", (
         "You're an intelligent appointment booking assistant for TailorTalk. "
@@ -64,9 +59,8 @@ def create_booking_agent(tools):
 
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
-        temperature=0.7,
-        credentials=credentials,  
-        google_api_key=None,
+        temperature=0.7, 
+        google_api_key=os.getenv("GOOGLE_API_KEY"),
         convert_system_message_to_human=True,
         verbose=True
     )

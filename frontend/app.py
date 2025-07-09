@@ -11,7 +11,7 @@ BACKEND_URL = os.getenv("BACKEND_URL", "https://tailortalkprivate-production.up.
 
 # App setup
 st.set_page_config(page_title="TailorTalk", page_icon="📅")
-st.title("📅 TailorTalk Appointment Booking")
+st.title("📅 meeting Appointment Booking Agent")
 st.caption("Conversational AI for Appointments booking")
 
 # Initialize session state

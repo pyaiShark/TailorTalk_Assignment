@@ -1,7 +1,7 @@
 # AI-Powered Appointment Booking System
 
 ## Overview
-TailorTalk is a conversational AI agent that enables natural language appointment booking via Google Calendar integration. This solution transforms traditional scheduling into an intuitive chat-based experience using state-of-the-art language models and cloud-native architecture.
+Natural Booking is a conversational AI agent that enables natural language appointment booking via Google Calendar integration. This solution transforms traditional scheduling into an intuitive chat-based experience using state-of-the-art language models and cloud-native architecture.
 
 ## Key Features ✨
 - 🗣️ **Natural Language Understanding**: Engage in human-like conversations to schedule appointments.
